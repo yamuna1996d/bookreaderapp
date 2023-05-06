@@ -1,6 +1,5 @@
 
 
-
 import 'package:bookreaderapp/Models/BookModel.dart';
 import '../api/api_exception.dart';
 import '../api/api_methods.dart';
@@ -27,20 +26,4 @@ class BooksInterface{
     }
   }
 
-  static Future<List<BookDetails>> fetchAllBooks() async {
-    try {
-      final response = await ApiRequest.send(
-          method: ApiMethod.GET,
-          route: "volumes?q=flutter",
-          );
-
-      if (response != null) {
-        return BookDetails.convertToList(response['items']);
-      }
-      return [];
-    } catch (err) {
-      print("Fetching Books error: $err");
-      throw ApiException(err.toString());
-    }
-  }
 }
